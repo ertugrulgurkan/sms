@@ -1,7 +1,9 @@
 package com.ertugrul.sms.model;
 
+import javax.persistence.MappedSuperclass;
 import java.time.LocalDate;
 
+@MappedSuperclass
 public class Person extends BaseEntity {
 
     private String firstName;
