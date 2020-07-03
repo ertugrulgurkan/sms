@@ -15,10 +15,6 @@ public class Person extends BaseEntity {
     @Column(name = "last_name")
     private String lastName;
 
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    @Column(name = "birth_date")
-    private Date birthDate;
-
     @Column(name = "phone_number")
     private String phoneNumber;
 
@@ -36,14 +32,6 @@ public class Person extends BaseEntity {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
-    }
-
-    public Date getBirthDate() {
-        return birthDate;
-    }
-
-    public void setBirthDate(Date birthDate) {
-        this.birthDate = birthDate;
     }
 
     public String getPhoneNumber() {
