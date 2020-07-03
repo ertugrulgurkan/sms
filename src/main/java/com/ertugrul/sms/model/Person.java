@@ -1,5 +1,7 @@
 package com.ertugrul.sms.model;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.Column;
 import javax.persistence.MappedSuperclass;
 import java.util.Date;
@@ -13,6 +15,7 @@ public class Person extends BaseEntity {
     @Column(name = "last_name")
     private String lastName;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Column(name = "birth_date")
     private Date birthDate;
 

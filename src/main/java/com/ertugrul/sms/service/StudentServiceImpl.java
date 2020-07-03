@@ -42,4 +42,11 @@ public class StudentServiceImpl implements StudentService {
     public void deleteById(Long aLong) {
         studentRepository.deleteById(aLong);
     }
+
+    @Override
+    public List<Student> findByFirstNameLike(String firstName) {
+        List<Student> students = new ArrayList<>();
+        studentRepository.findByFirstNameLike(firstName).forEach(students::add);
+        return students;
+    }
 }

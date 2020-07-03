@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@CrossOrigin
 public class StudentController {
 
     private final StudentService studentService;
@@ -42,6 +43,11 @@ public class StudentController {
     void deleteStudent(@PathVariable Long id) {
         studentService.deleteById(id);
     }
-    
+
+    @GetMapping(value = "/students/search")
+    public List<Student> searchStudentsByLastName(@RequestParam("name") String firstName){
+        List<Student> studentSearchList = studentService.findByFirstNameLike("%"+ firstName + "%");
+        return studentSearchList;
+    }
 
 }
