@@ -4,8 +4,8 @@ import com.ertugrul.sms.model.Student;
 import com.ertugrul.sms.repository.StudentRepository;
 import org.springframework.stereotype.Service;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class StudentServiceImpl implements StudentService {
@@ -17,8 +17,8 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    public Set<Student> findAll() {
-        Set<Student> students = new HashSet<>();
+    public List<Student> findAll() {
+        List<Student> students = new ArrayList<>();
         studentRepository.findAll().forEach(students::add);
         return students;
     }
