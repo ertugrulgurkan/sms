@@ -2,17 +2,21 @@ package com.ertugrul.sms.service;
 
 import com.ertugrul.sms.model.Course;
 import com.ertugrul.sms.repository.CourseRepository;
+import com.ertugrul.sms.repository.TeacherRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class CourseServiceImpl implements CourseService {
     private final CourseRepository courseRepository;
+    private final TeacherRepository teacherRepository;
 
-    public CourseServiceImpl(CourseRepository courseRepository) {
+    public CourseServiceImpl(CourseRepository courseRepository, TeacherRepository teacherRepository) {
         this.courseRepository = courseRepository;
+        this.teacherRepository = teacherRepository;
     }
 
     @Override

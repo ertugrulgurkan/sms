@@ -1,8 +1,5 @@
 package com.ertugrul.sms.model;
 
-
-
-
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
@@ -14,7 +11,7 @@ public class Student extends Person{
     @Column(name = "student_number")
     private Integer studentNumber;
 
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.DETACH)
     @JoinTable(name = "courses_students",joinColumns = @JoinColumn(name = "course_id"),
             inverseJoinColumns = @JoinColumn(name = "student_id"))
     private Set<Course> courses = new HashSet<>();

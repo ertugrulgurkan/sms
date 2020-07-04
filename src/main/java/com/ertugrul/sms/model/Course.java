@@ -18,8 +18,12 @@ public class Course extends BaseEntity{
     @Column(name = "year")
     private Integer year;
 
-    @JsonBackReference
-    @ManyToMany(mappedBy = "courses", fetch = FetchType.LAZY , cascade = CascadeType.DETACH)
+    @JsonBackReference(value="teacher-course")
+    @ManyToOne
+    private Teacher teacher;
+
+    @JsonBackReference(value="student-course")
+    @ManyToMany(mappedBy = "courses", fetch = FetchType.LAZY)
     private Set<Student> students = new HashSet<>();
 
 
@@ -53,5 +57,13 @@ public class Course extends BaseEntity{
 
     public void setStudents(Set<Student> students) {
         this.students = students;
+    }
+
+    public Teacher getTeacher() {
+        return teacher;
+    }
+
+    public void setTeacher(Teacher teacher) {
+        this.teacher = teacher;
     }
 }
