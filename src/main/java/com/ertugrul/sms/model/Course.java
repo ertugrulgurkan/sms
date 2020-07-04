@@ -1,7 +1,9 @@
 package com.ertugrul.sms.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import javax.persistence.*;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "COURSE")
@@ -16,10 +18,9 @@ public class Course extends BaseEntity{
     @Column(name = "year")
     private Integer year;
 
-    @ManyToMany(fetch = FetchType.EAGER , cascade = CascadeType.ALL)
-    @JoinTable(name = "courses_students",joinColumns = @JoinColumn(name = "course_id"),
-            inverseJoinColumns = @JoinColumn(name = "student_id"))
-    private List<Student> students;
+    @JsonBackReference
+    @ManyToMany(mappedBy = "courses", fetch = FetchType.LAZY , cascade = CascadeType.DETACH)
+    private Set<Student> students = new HashSet<>();
 
 
     public String getCourseName() {
@@ -46,11 +47,11 @@ public class Course extends BaseEntity{
         this.year = year;
     }
 
-    public List<Student> getStudents() {
+    public Set<Student> getStudents() {
         return students;
     }
 
-    public void setStudents(List<Student> students) {
+    public void setStudents(Set<Student> students) {
         this.students = students;
     }
 }
