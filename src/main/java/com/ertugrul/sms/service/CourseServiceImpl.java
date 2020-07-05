@@ -33,7 +33,14 @@ public class CourseServiceImpl implements CourseService {
 
     @Override
     public Course save(Course object) {
-        return courseRepository.save(object);
+        if (object.getId() != null){
+            Course course = courseRepository.findById(object.getId()).orElse(null);
+            if (course != null){
+                object.setTeacher(course.getTeacher());
+                object.setStudents(course.getStudents());
+            }
+        }
+        return (object.getTeacher() == null) ? null : courseRepository.save(object);
     }
 
     @Override
